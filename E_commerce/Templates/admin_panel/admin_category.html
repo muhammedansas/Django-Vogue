@@ -1,0 +1,95 @@
+{% extends "admin_panel/admin.html" %}
+{% block "admin_content" %}
+
+
+<style>
+    .gradient-custom-2 {
+  /* fallback for old browsers */
+  background: #7e40f6;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(126, 64, 246, 1),
+    rgba(80, 139, 252, 1)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to right,
+    rgba(126, 64, 246, 1),
+    rgba(80, 139, 252, 1)
+  );
+}
+
+.mask-custom {
+  background: rgba(24, 24, 16, 0.2);
+  border-radius: 2em;
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  background-clip: padding-box;
+  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+}
+a.text-white {
+        text-decoration: none;
+    }
+</style>
+<section class="vh-100 gradient-custom-2">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-12 col-xl-10">
+          
+          <div class="card mask-custom">
+            <div class="card-body p-4 text-white">
+              <div class="text-center pt-3 pb-2">
+                <h2 class="my-4">Category List</h2>
+              </div>
+              <div class="text-end">
+                <button type="button" class="btn btn-success"><a href="{% url "add_category" %}" class="text-white">Add New Category</a></button>
+              </div>
+              
+  
+              <table class="table text-white mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">Category</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody> 
+                    {% for category in category %}
+                  <tr class="fw-normal">
+                    <th>
+                      <img src="{{ category.catogary_image.url }}" alt="category image" style="width: 45px; height: auto;">
+
+                      <span class="ms-2">{{ category.catogary_name }}</span>
+                  </th>
+                    <td class="align-middle">
+                      <span>{{category.description}}</span>
+                    </td>
+                    <td class="align-middle">
+                        <a href="{% url "edit_category" category.slug %}" data-bs-toggle="tooltip" title="Edit">
+                            <i class="fas fa-edit fa-lg text-warning me-3"></i></a>
+                    </td>
+                    <td class="align-middle">
+                      <a href="{% url "delete_category" category.slug %}" data-mdb-toggle="tooltip" title="Remove"><i
+                          class="fas fa-trash-alt fa-lg text-danger"></i></a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+  
+         
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </section>
+
+    
+{% endblock %}

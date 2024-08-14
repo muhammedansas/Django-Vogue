@@ -1,0 +1,26 @@
+{% extends "admin_panel/admin.html" %}
+
+{% block "admin_content" %}
+<div class="d-flex justify-content-center mb-3 mt-4">
+    <button type="button" class="btn btn-success"><a href="{% url 'add_product' %}" class="text-white">Add New Product</a></button>            
+  </div>
+{% for i in products %}
+
+<div style="margin-top:30px">
+<div style="width: 99%; box-shadow: 0px 0px 3px 3px grey; background-color: white; margin-top: 10px; display: flex; align-content: center; justify-content: space-between; border-radius: 10px; padding: 10px;">
+    <div style="display: flex;">
+        <img style="height: 100px; border-radius: 10px;" src="{{i.image.url}}" alt="" />
+        <div style="margin-left: 10px;">
+            <h6>{{i.product_name}}</h6>
+            <h6>{{i.description}}</h6>
+            <h6>MRP :{{i.price}} </h6>
+        </div>
+    </div>
+    <div style="width: 100px; height: 90px; display: grid; align-items: center; justify-content: center;">
+        <a href="{% url 'edit_product' i.id %}"><button style="width: 60px; border-radius: 5px; height: 30px; border: 0px; background-color: #3734d5; color: white; font-weight: bold;">Edit</button></a>
+        <a href="{% url 'delete_product' i.id %}"><button style="width: 70px; border-radius: 5px; height: 30px; border: 0px; background-color: #eb1919; color: white; font-weight: bold;">remove</button></a>
+    </div>
+</div>
+</div>
+{% endfor %}
+{% endblock %}

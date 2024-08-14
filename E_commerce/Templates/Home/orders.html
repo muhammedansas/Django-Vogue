@@ -1,0 +1,58 @@
+{% extends 'Home/home.html' %}
+{% block content %}
+
+    <section class="section-conten padding-y bg">
+    {% include "accounts/alerts.html" %}
+    <div class="container">
+        <div class="row">
+        
+        
+        <main  class="col-md-12">
+            <article class="card">
+            <header class="card-header">
+                <strong class="d-inline-block mr-3">Order history</strong>
+            </header>
+            <div class="card-body">
+                <div class="row">
+                   
+                    <div class="col-md-12">
+                       
+                        <table class="table">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th>Order #</th>
+                                <th>Billing name</th>
+                                <th>Phone</th>
+                                <th>Order total</th> 
+                                <th>Date</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in orders %}
+                              <tr>
+                                <td >{{order.order_number}}</td>
+                                <td>{{order.full_name}}</td>
+                                <td>{{order.phone}}</td>
+                                <td>{{order.order_total}}</td>
+                                <td>{{order.created_at}}</td>
+                              </tr>
+                             {% endfor %}
+                              
+                            </tbody>
+                          </table>
+                       
+                    </div>
+                </div>
+            </div>
+            </article> <!-- order-group.// --> 
+        </main>
+    </div> <!-- row.// -->
+    </div>
+<br/>
+<p style="margin-left:30px"><a href="{% url 'dashboard' %}" class="btn btn-primary py-3 px-4">Back to Dashboard</a></p>
+    
+    </section>
+    
+    
+    
+{% endblock %}
