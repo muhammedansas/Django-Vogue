@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 print(f"Loaded SECRET_KEY: {SECRET_KEY}")  # Add this line for debugging
 
-   
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
